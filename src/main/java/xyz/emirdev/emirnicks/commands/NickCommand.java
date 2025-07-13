@@ -10,12 +10,13 @@ import xyz.emirdev.emirnicks.Utils;
 import xyz.emirdev.emirnicks.nick.Nick;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class NickCommand {
 
     @Command("nick")
     @CommandPermission("emirnicks.nick")
-    public void nick(Player player, String name, Group group, @Optional boolean useTargetSkin) {
+    public void nick(Player player, String name, Group group, @Optional String uuid, @Optional boolean useTargetSkin) {
         if (EmirNicks.getNickManager().isNicked(player)) {
             Utils.sendError(player, "You are already nicked.");
             return;
@@ -26,21 +27,25 @@ public class NickCommand {
             return;
         }
 
+        if (uuid != null && !uuid.matches("[A-f0-9]{8}-[A-f0-9]{4}-[A-f0-9]{4}-[A-f0-9]{4}-[A-f0-9]{12}")) {
+            Utils.sendError(player, "Uuid is not a valid uuid.");
+            return;
+        }
+
         Nick nick = new Nick(
                 player,
                 name,
+                UUID.fromString(Objects.requireNonNullElse(uuid, player.getUniqueId().toString())),
                 group,
-                Objects.requireNonNullElse(useTargetSkin, false)
-        );
+                Objects.requireNonNullElse(useTargetSkin, false));
 
         EmirNicks.getNickManager().nick(player, nick);
 
         Utils.sendMessage(player,
                 "<#00eeee>You are now nicked as <#00ccff>{0}{1}",
-                group.getCachedData().getMetaData().getPrefix() != null ?
-                        Utils.convertLegacyHexToMiniMessage(group.getCachedData().getMetaData().getPrefix()) :
-                        "",
-                name
-        );
+                group.getCachedData().getMetaData().getPrefix() != null
+                        ? Utils.convertLegacyHexToMiniMessage(group.getCachedData().getMetaData().getPrefix())
+                        : "",
+                name);
     }
 }

@@ -10,8 +10,9 @@ import revxrsal.commands.bukkit.BukkitLamp;
 import revxrsal.commands.bukkit.actor.BukkitCommandActor;
 import xyz.emirdev.emirnicks.commands.NickCommand;
 import xyz.emirdev.emirnicks.commands.UnNickCommand;
+import xyz.emirdev.emirnicks.events.PlayerEJoinEvent;
+import xyz.emirdev.emirnicks.events.PlayerLeaveEvent;
 import xyz.emirdev.emirnicks.events.PlayerPreLoginEvent;
-import xyz.emirdev.emirnicks.events.PreProfileLookupEvent;
 import xyz.emirdev.emirnicks.nick.NickManager;
 import xyz.emirdev.emirnicks.parameters.GroupParameterType;
 
@@ -48,12 +49,12 @@ public final class EmirNicks extends JavaPlugin {
 
         List.of(
                 new NickCommand(),
-                new UnNickCommand()
-        ).forEach(lamp::register);
+                new UnNickCommand()).forEach(lamp::register);
 
         List.of(
-                new PlayerPreLoginEvent()
-        ).forEach(e -> Bukkit.getPluginManager().registerEvents(e, this));
+                new PlayerPreLoginEvent(),
+                new PlayerEJoinEvent(),
+                new PlayerLeaveEvent()).forEach(e -> Bukkit.getPluginManager().registerEvents(e, this));
 
     }
 

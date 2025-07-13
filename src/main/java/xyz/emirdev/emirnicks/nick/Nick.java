@@ -2,18 +2,23 @@ package xyz.emirdev.emirnicks.nick;
 
 import com.destroystokyo.paper.profile.PlayerProfile;
 import net.luckperms.api.model.group.Group;
+
+import java.util.UUID;
+
 import org.bukkit.entity.Player;
 
 public class Nick {
     private final Player player;
     private final String name;
+    private final UUID uuid;
     private final Group group;
     private final boolean usingTargetSkin;
     private PlayerProfile originalProfile;
 
-    public Nick(Player player, String name, Group group, boolean usingTargetSkin) {
+    public Nick(Player player, String name, UUID uuid, Group group, boolean usingTargetSkin) {
         this.player = player;
         this.name = name;
+        this.uuid = uuid;
         this.group = group;
         this.usingTargetSkin = usingTargetSkin;
     }
@@ -24,6 +29,10 @@ public class Nick {
 
     public String getName() {
         return name;
+    }
+
+    public UUID getUUID() {
+        return uuid;
     }
 
     public Group getGroup() {
