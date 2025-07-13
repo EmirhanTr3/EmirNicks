@@ -1,4 +1,4 @@
-package xyz.emirdev.emirnicks;
+package xyz.emirdev.echoname;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;

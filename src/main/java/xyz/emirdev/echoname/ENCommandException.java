@@ -1,4 +1,4 @@
-package xyz.emirdev.emirnicks;
+package xyz.emirdev.echoname;
 
 import org.jetbrains.annotations.NotNull;
 import revxrsal.commands.command.CommandActor;

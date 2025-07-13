@@ -1,4 +1,4 @@
-package xyz.emirdev.emirnicks.nick;
+package xyz.emirdev.echoname.nick;
 
 import com.destroystokyo.paper.profile.PlayerProfile;
 import net.luckperms.api.model.group.Group;

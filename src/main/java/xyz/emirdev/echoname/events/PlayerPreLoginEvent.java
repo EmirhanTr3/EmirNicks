@@ -1,11 +1,11 @@
-package xyz.emirdev.emirnicks.events;
+package xyz.emirdev.echoname.events;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
-import xyz.emirdev.emirnicks.EmirNicks;
-import xyz.emirdev.emirnicks.nick.Nick;
+import xyz.emirdev.echoname.EchoName;
+import xyz.emirdev.echoname.nick.Nick;
 
 import java.util.UUID;
 
@@ -15,14 +15,14 @@ public class PlayerPreLoginEvent implements Listener {
     public void event(AsyncPlayerPreLoginEvent event) {
         UUID uuid = event.getPlayerProfile().getId();
 
-        if (EmirNicks.getNickManager().isNicked(uuid)) {
-            Nick nick = EmirNicks.getNickManager().getNick(uuid);
+        if (EchoName.getNickManager().isNicked(uuid)) {
+            Nick nick = EchoName.getNickManager().getNick(uuid);
 
-            EmirNicks.getNickManager().getModifiedProfile(event.getPlayerProfile(), nick)
+            EchoName.getNickManager().getModifiedProfile(event.getPlayerProfile(), nick)
                     .thenAccept(event::setPlayerProfile);
 
             if (nick.getUUID().equals(nick.getOriginalProfile().getId()))
-                EmirNicks.getNickManager().addPrefixes(uuid, nick.getGroup());
+                EchoName.getNickManager().addPrefixes(uuid, nick.getGroup());
         }
     }
 }

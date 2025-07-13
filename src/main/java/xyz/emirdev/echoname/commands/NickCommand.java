@@ -1,13 +1,13 @@
-package xyz.emirdev.emirnicks.commands;
+package xyz.emirdev.echoname.commands;
 
 import net.luckperms.api.model.group.Group;
 import org.bukkit.entity.Player;
 import revxrsal.commands.annotation.Command;
 import revxrsal.commands.annotation.Optional;
 import revxrsal.commands.bukkit.annotation.CommandPermission;
-import xyz.emirdev.emirnicks.EmirNicks;
-import xyz.emirdev.emirnicks.Utils;
-import xyz.emirdev.emirnicks.nick.Nick;
+import xyz.emirdev.echoname.EchoName;
+import xyz.emirdev.echoname.Utils;
+import xyz.emirdev.echoname.nick.Nick;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -15,9 +15,9 @@ import java.util.UUID;
 public class NickCommand {
 
     @Command("nick")
-    @CommandPermission("emirnicks.nick")
+    @CommandPermission("echoname.nick")
     public void nick(Player player, String name, Group group, @Optional String uuid, @Optional boolean useTargetSkin) {
-        if (EmirNicks.getNickManager().isNicked(player)) {
+        if (EchoName.getNickManager().isNicked(player)) {
             Utils.sendError(player, "You are already nicked.");
             return;
         }
@@ -39,7 +39,7 @@ public class NickCommand {
                 group,
                 Objects.requireNonNullElse(useTargetSkin, false));
 
-        EmirNicks.getNickManager().nick(player, nick);
+        EchoName.getNickManager().nick(player, nick);
 
         Utils.sendMessage(player,
                 "<#00eeee>You are now nicked as <#00ccff>{0}{1}",

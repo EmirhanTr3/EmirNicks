@@ -1,4 +1,4 @@
-package xyz.emirdev.emirnicks.parameters;
+package xyz.emirdev.echoname.parameters;
 
 import net.luckperms.api.model.group.Group;
 import org.jetbrains.annotations.NotNull;
@@ -7,8 +7,8 @@ import revxrsal.commands.command.CommandActor;
 import revxrsal.commands.node.ExecutionContext;
 import revxrsal.commands.parameter.ParameterType;
 import revxrsal.commands.stream.MutableStringStream;
-import xyz.emirdev.emirnicks.ENCommandException;
-import xyz.emirdev.emirnicks.EmirNicks;
+import xyz.emirdev.echoname.ENCommandException;
+import xyz.emirdev.echoname.EchoName;
 
 public class GroupParameterType implements ParameterType<CommandActor, Group> {
 
@@ -16,7 +16,7 @@ public class GroupParameterType implements ParameterType<CommandActor, Group> {
     public Group parse(@NotNull MutableStringStream input, @NotNull ExecutionContext<@NotNull CommandActor> context) {
         String name = input.readString();
 
-        Group group = EmirNicks.getLuckPerms().getGroupManager().getGroup(name);
+        Group group = EchoName.getLuckPerms().getGroupManager().getGroup(name);
 
         if (group == null) throw new ENCommandException(
                 "<red>Invalid group:</red> <yellow>{0}</yellow>",
@@ -28,7 +28,7 @@ public class GroupParameterType implements ParameterType<CommandActor, Group> {
 
     @Override
     public @NotNull SuggestionProvider<@NotNull CommandActor> defaultSuggestions() {
-        return (context) -> EmirNicks.getLuckPerms().getGroupManager().getLoadedGroups().stream().map(Group::getName).toList();
+        return (context) -> EchoName.getLuckPerms().getGroupManager().getLoadedGroups().stream().map(Group::getName).toList();
     }
 
     @Override

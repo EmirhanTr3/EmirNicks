@@ -1,4 +1,4 @@
-package xyz.emirdev.emirnicks.nick;
+package xyz.emirdev.echoname.nick;
 
 import com.destroystokyo.paper.profile.PlayerProfile;
 
@@ -12,7 +12,7 @@ import net.luckperms.api.node.types.SuffixNode;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import xyz.emirdev.emirnicks.EmirNicks;
+import xyz.emirdev.echoname.EchoName;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,10 +53,10 @@ public class NickManager {
 
         if (nick.getUUID().equals(nick.getOriginalProfile().getId())) {
             getModifiedProfile(player.getPlayerProfile(), nick).thenAcceptAsync(profile -> {
-                Bukkit.getScheduler().runTask(EmirNicks.get(), () -> {
+                Bukkit.getScheduler().runTask(EchoName.get(), () -> {
                     player.setPlayerProfile(profile);
                 });
-                Bukkit.getScheduler().runTaskLater(EmirNicks.get(), () -> resetPassengers(player), 10);
+                Bukkit.getScheduler().runTaskLater(EchoName.get(), () -> resetPassengers(player), 10);
             });
 
             addPrefixes(player.getUniqueId(), nick.getGroup());
@@ -74,7 +74,7 @@ public class NickManager {
         Nick nick = nickedPlayers.get(player.getUniqueId());
 
         player.setPlayerProfile(nick.getOriginalProfile());
-        Bukkit.getScheduler().runTaskLater(EmirNicks.get(), () -> resetPassengers(player), 10);
+        Bukkit.getScheduler().runTaskLater(EchoName.get(), () -> resetPassengers(player), 10);
 
         if (nick.getUUID().equals(nick.getOriginalProfile().getId()))
             removePrefixes(player.getUniqueId(), nick.getGroup());
@@ -103,7 +103,7 @@ public class NickManager {
 
     public void addPrefixes(UUID uuid, Group group) {
         CachedMetaData groupMetaData = group.getCachedData().getMetaData();
-        User user = EmirNicks.getLuckPerms().getUserManager().getUser(uuid);
+        User user = EchoName.getLuckPerms().getUserManager().getUser(uuid);
 
         if (groupMetaData.getPrefix() != null) {
             user.data().add(PrefixNode.builder(groupMetaData.getPrefix(), 3112024).build());
@@ -112,12 +112,12 @@ public class NickManager {
             user.data().add(SuffixNode.builder(groupMetaData.getSuffix(), 3112024).build());
         }
 
-        EmirNicks.getLuckPerms().getUserManager().saveUser(user);
+        EchoName.getLuckPerms().getUserManager().saveUser(user);
     }
 
     public void removePrefixes(UUID uuid, Group group) {
         CachedMetaData groupMetaData = group.getCachedData().getMetaData();
-        User user = EmirNicks.getLuckPerms().getUserManager().getUser(uuid);
+        User user = EchoName.getLuckPerms().getUserManager().getUser(uuid);
 
         if (groupMetaData.getPrefix() != null) {
             user.data().remove(PrefixNode.builder(groupMetaData.getPrefix(), 3112024).build());
@@ -126,13 +126,13 @@ public class NickManager {
             user.data().remove(SuffixNode.builder(groupMetaData.getSuffix(), 3112024).build());
         }
 
-        EmirNicks.getLuckPerms().getUserManager().saveUser(user);
+        EchoName.getLuckPerms().getUserManager().saveUser(user);
     }
 
     private void resetPassengers(Player player) {
         List<Entity> passengers = player.getPassengers();
         passengers.forEach(player::removePassenger);
-        Bukkit.getScheduler().runTaskLater(EmirNicks.get(), () -> {
+        Bukkit.getScheduler().runTaskLater(EchoName.get(), () -> {
             passengers.forEach(player::addPassenger);
         }, 5);
     }

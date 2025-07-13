@@ -1,4 +1,4 @@
-package xyz.emirdev.emirnicks;
+package xyz.emirdev.echoname;
 
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
@@ -8,22 +8,22 @@ import org.bukkit.plugin.java.JavaPlugin;
 import revxrsal.commands.Lamp;
 import revxrsal.commands.bukkit.BukkitLamp;
 import revxrsal.commands.bukkit.actor.BukkitCommandActor;
-import xyz.emirdev.emirnicks.commands.NickCommand;
-import xyz.emirdev.emirnicks.commands.UnNickCommand;
-import xyz.emirdev.emirnicks.events.PlayerEJoinEvent;
-import xyz.emirdev.emirnicks.events.PlayerLeaveEvent;
-import xyz.emirdev.emirnicks.events.PlayerPreLoginEvent;
-import xyz.emirdev.emirnicks.nick.NickManager;
-import xyz.emirdev.emirnicks.parameters.GroupParameterType;
+import xyz.emirdev.echoname.commands.NickCommand;
+import xyz.emirdev.echoname.commands.UnNickCommand;
+import xyz.emirdev.echoname.events.PlayerEJoinEvent;
+import xyz.emirdev.echoname.events.PlayerLeaveEvent;
+import xyz.emirdev.echoname.events.PlayerPreLoginEvent;
+import xyz.emirdev.echoname.nick.NickManager;
+import xyz.emirdev.echoname.parameters.GroupParameterType;
 
 import java.util.List;
 
-public final class EmirNicks extends JavaPlugin {
-    private static EmirNicks instance;
+public final class EchoName extends JavaPlugin {
+    private static EchoName instance;
     private static LuckPerms luckPerms;
     private static NickManager nickManager;
 
-    public static EmirNicks get() {
+    public static EchoName get() {
         return instance;
     }
 

@@ -1,4 +1,4 @@
-package xyz.emirdev.emirnicks;
+package xyz.emirdev.echoname;
 
 import io.papermc.paper.plugin.loader.PluginClasspathBuilder;
 import io.papermc.paper.plugin.loader.PluginLoader;
@@ -7,7 +7,7 @@ import org.eclipse.aether.artifact.DefaultArtifact;
 import org.eclipse.aether.graph.Dependency;
 import org.eclipse.aether.repository.RemoteRepository;
 
-public class EmirNicksPluginLoader implements PluginLoader {
+public class EchoNamePluginLoader implements PluginLoader {
 
     @Override
     public void classloader(PluginClasspathBuilder classpathBuilder) {

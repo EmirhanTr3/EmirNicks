@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>xyz.emirdev</groupId>
-  <artifactId>EmirNicks</artifactId>
+  <artifactId>EchoName</artifactId>
   <version>1.1.0</version>
   <packaging>jar</packaging>
 
-  <name>EmirNicks</name>
+  <name>EchoName</name>
 
   <properties>
     <java.version>21</java.version>

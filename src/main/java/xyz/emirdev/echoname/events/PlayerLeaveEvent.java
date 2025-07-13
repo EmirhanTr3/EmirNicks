@@ -1,14 +1,14 @@
-package xyz.emirdev.emirnicks.events;
+package xyz.emirdev.echoname.events;
 
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import xyz.emirdev.emirnicks.EmirNicks;
+import xyz.emirdev.echoname.EchoName;
 
 public class PlayerLeaveEvent implements Listener {
 
     public void event(PlayerQuitEvent event) {
-        if (EmirNicks.getNickManager().silentKicked.contains(event.getPlayer().getUniqueId()))
+        if (EchoName.getNickManager().silentKicked.contains(event.getPlayer().getUniqueId()))
             event.quitMessage(null);
     }
 }
